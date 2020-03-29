@@ -51,9 +51,6 @@ ALTER TABLE filme ADD CONSTRAINT FK_filme_genero FOREIGN KEY (codgenero) REFEREN
 INSERT INTO preco (cor, valor) VALUES ('PB', 4);
 INSERT INTO preco (cor, valor) VALUES ('CO', 6);
 
-INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (1, 'Antonio Carlos', 'Rua Alvaro', 'Arnes', 'Belo Horizonte', 'MG');
-INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (2, 'Agnes Clara', 'Rua Chagas', 'Bonfim', 'Belo Horizonte', 'MG');
-
 INSERT INTO genero (codgenero, descricao) VALUES (111, 'Aventura');
 INSERT INTO genero (codgenero, descricao) VALUES (222, 'Acao');
 INSERT INTO genero (codgenero, descricao) VALUES (333, 'Drama');
@@ -65,6 +62,9 @@ INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (2, 'A Noite n
 INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (3, 'Her', 'CO', 'D', 333);
 INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (4, 'Um Lugar Silencioso', 'PB', 'I', 444);
 INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (5, 'Frozen', 'PB', 'D', 555);
+
+INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (1, 'Antonio Carlos', 'Rua Alvaro', 'Arnes', 'Belo Horizonte', 'MG');
+INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (2, 'Agnes Clara', 'Rua Chagas', 'Bonfim', 'Belo Horizonte', 'MG');
 
 INSERT INTO locacao (codcliente, codfilme, data, datadedevolucao) VALUES (1, 2, '03/10/2020','03/17/2020');
 INSERT INTO locacao (codcliente, codfilme, data, datadedevolucao) VALUES (2, 4, '03/23/2020', NULL);
