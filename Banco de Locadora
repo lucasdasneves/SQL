@@ -1,0 +1,70 @@
+DROP TABLE cliente;
+DROP TABLE locacao;
+DROP TABLE filme;
+DROP TABLE preco;
+DROP TABLE genero;
+
+CREATE TABLE cliente (
+codcliente NUMBER(10) NOT NULL,
+nome VARCHAR (50) NOT NULL,
+endereco VARCHAR (50) NULL,
+bairro VARCHAR (20) NULL,
+cidade VARCHAR (50) NULL,
+estado CHAR (2) NULL,
+CONSTRAINT pk_cliente PRIMARY KEY (codcliente)
+);
+
+CREATE TABLE locacao (
+codcliente NUMBER (10) NOT NULL,
+codfilme NUMBER (3) NOT NULL,
+data DATE NOT NULL,
+datadedevolucao DATE NULL,
+CONSTRAINT pk_locacao PRIMARY KEY (data)
+);
+
+CREATE TABLE filme (
+codfilme NUMBER(3) NOT NULL,
+nome VARCHAR (50) NOT NULL,
+cor CHAR (2) NOT NULL,
+status CHAR(1) NOT NULL,
+codgenero NUMBER(3) NOT NULL,
+CONSTRAINT pk_filme PRIMARY KEY (codfilme)
+);
+
+CREATE TABLE preco (
+cor CHAR(2) NOT NULL,
+valor NUMBER (10) NOT NULL,
+CONSTRAINT pk_preco PRIMARY KEY (cor)
+);
+
+CREATE TABLE genero (
+codgenero NUMBER(3) NOT NULL,
+descricao VARCHAR (20) NOT NULL,
+CONSTRAINT pk_genero PRIMARY KEY (codgenero)
+);
+
+ALTER TABLE locacao ADD CONSTRAINT FK_cliente_locacao FOREIGN KEY (codcliente) REFERENCES cliente (codcliente);
+ALTER TABLE locacao ADD CONSTRAINT FK_locacao_filme FOREIGN KEY (codfilme) REFERENCES filme (codfilme);
+ALTER TABLE filme ADD CONSTRAINT FK_filme_preco FOREIGN KEY (cor) REFERENCES preco (cor);
+ALTER TABLE filme ADD CONSTRAINT FK_filme_genero FOREIGN KEY (codgenero) REFERENCES genero (codgenero);
+
+INSERT INTO preco (cor, valor) VALUES ('PB', 4);
+INSERT INTO preco (cor, valor) VALUES ('CO', 6);
+
+INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (1, 'Antonio Carlos', 'Rua Alvaro', 'Arnes', 'Belo Horizonte', 'MG');
+INSERT INTO cliente (codcliente, nome, endereco, bairro, cidade, estado) VALUES (2, 'Agnes Clara', 'Rua Chagas', 'Bonfim', 'Belo Horizonte', 'MG');
+
+INSERT INTO genero (codgenero, descricao) VALUES (111, 'Aventura');
+INSERT INTO genero (codgenero, descricao) VALUES (222, 'Acao');
+INSERT INTO genero (codgenero, descricao) VALUES (333, 'Drama');
+INSERT INTO genero (codgenero, descricao) VALUES (444, 'Suspense');
+INSERT INTO genero (codgenero, descricao) VALUES (555, 'Infantil');
+
+INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (1, 'Desventuras em Série', 'CO', 'D', 111);
+INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (2, 'A Noite nos Persegue', 'CO', 'I', 222);
+INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (3, 'Her', 'CO', 'D', 333);
+INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (4, 'Um Lugar Silencioso', 'PB', 'I', 444);
+INSERT INTO filme (codfilme, nome, cor, status, codgenero) VALUES (5, 'Frozen', 'PB', 'D', 555);
+
+INSERT INTO locacao (codcliente, codfilme, data, datadedevolucao) VALUES (1, 2, '03/10/2020','03/17/2020');
+INSERT INTO locacao (codcliente, codfilme, data, datadedevolucao) VALUES (2, 4, '03/23/2020', NULL);
